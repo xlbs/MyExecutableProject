@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Class-Path: libs/commons-pool2-2.0.jar libs/config-1.2.1.jar libs/nett
+ y-3.8.0.Final.jar libs/scala-stm_2.11-0.7.jar libs/protobuf-java-2.5.
+ 0.jar libs/scala-library-2.11.5.jar libs/scala-reflect-2.11.0.jar lib
+ s/scalatest_2.11-2.1.3.jar libs/akka-actor_2.11-2.3.15.jar libs/akka-
+ agent_2.11-2.3.15.jar libs/akka-camel_2.11-2.3.15.jar libs/akka-slf4j
+ _2.11-2.3.15.jar libs/akka-kernel_2.11-2.3.15.jar libs/akka-remote_2.
+ 11-2.3.15.jar libs/akka-zeromq_2.11-2.3.15.jar libs/akka-cluster_2.11
+ -2.3.15.jar libs/akka-contrib_2.11-2.3.15.jar libs/akka-testkit_2.11-
+ 2.3.15.jar libs/akka-dataflow_2.11-2.3.15.jar libs/akka-transactor_2.
+ 11-2.3.15.jar libs/akka-durable-mailboxes-2.3.15.jar libs/akka-file-m
+ ailbox_2.11-2.3.15.jar libs/akka-remote-tests_2.11-2.3.15.jar libs/ak
+ ka-mailboxes-common_2.11-2.3.15.jar libs/akka-multi-node-testkit_2.11
+ -2.3.15.jar libs/scala-continuations-library_2.11-1.0.2.jar libs/akka
+ -persistence-experimental_2.11-2.3.15.jar libs/akka-persistence-tck-e
+ xperimental_2.11-2.3.15.jar libs/log4j-1.2.17.jar libs/slf4j-api-1.7.
+ 5.jar libs/slf4j-log4j12-1.7.5.jar libs/apache-log4j-extras-1.2.17.ja
+ r libs/gson-2.3.jar libs/jedis-2.6.2.jar
+

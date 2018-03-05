@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ClientService/ClientService.iml" filepath="$PROJECT_DIR$/ClientService/ClientService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Distribution/GeTuiService/GeTuiService.iml" filepath="$PROJECT_DIR$/Distribution/GeTuiService/GeTuiService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JedisService/JedisService.iml" filepath="$PROJECT_DIR$/JedisService/JedisService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyExecutableProject.iml" filepath="$PROJECT_DIR$/MyExecutableProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Distribution/QueryService/QueryService.iml" filepath="$PROJECT_DIR$/Distribution/QueryService/QueryService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Distribution/ServiceInterface/ServiceInterface.iml" filepath="$PROJECT_DIR$/Distribution/ServiceInterface/ServiceInterface.iml" />
+    </modules>
+  </component>
+</project>

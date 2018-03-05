@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<JedisService>
+	<maxTotal>500</maxTotal>
+	<maxIdle>20</maxIdle>
+	<testOnBorrow>true</testOnBorrow>
+	<needJedis>true</needJedis>
+	<redisClusters>
+		<clusterName>docRedis</clusterName>
+		<ipports>
+			<ip>127.0.0.1</ip>
+			<port>6002</port>
+		</ipports>
+	</redisClusters>
+	<redisClusters>
+		<clusterName>dataRedis</clusterName>
+		<ipports>
+			<ip>127.0.0.1</ip>
+			<port>6001</port>
+		</ipports>
+	</redisClusters>
+	<fetchSize>100000</fetchSize>
+</JedisService>

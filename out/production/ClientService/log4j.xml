@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+     <!--org.apache.log4j.RollingFileAppender(文件大小到达指定尺寸的时候产生一个新的文件) -->
+     <!--org.apache.log4j.ConsoleAppender (控制台):ConsoleAppender的构造方法不接受其它的参数。  -->
+     <!--org.apache.log4j.FileAppender (文件) -->
+     <!--org.apache.log4j.DailyRollingFileAppender (每天产生一个日志文件) -->
+     <!--org.apache.log4j.WriterAppender (将日志信息以流格式发送到任意指定的地方)-->
+	<!--日志级别level由高到低：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、ALL-->
+	<!--level越低，表示该logger越详细，level越高，表示该logging request越优先输出-->
+
+	<appender name="consolelog" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS} : %p] [%l] %m%n" />
+		</layout>
+	</appender>
+
+	<!--设定级别为DEBUG的配置信息-->
+	<appender name="debugLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="encoding" value="utf-8"/>
+		<!-- Append表示如文件已存在，是否把日志追加到文件尾部，可能取值为"true"和"false"（默认） -->
+		<param name="Append" value="true" />
+		<!-- File表示日志文件名 -->
+		<param name="File" value="logs/debug/debug.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS} : %p] [%l]--- %m%n" />
+		</layout>
+		<!-- 只输出DEBUG级别的日志 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<!--设定级别为INFO的配置信息-->
+	<appender name="infoLog" class="org.apache.log4j.rolling.RollingFileAppender">
+		<param name="encoding" value="utf-8"/>
+		<!-- Append表示如文件已存在，是否把日志追加到文件尾部，可能取值为"true"和"false"（默认） -->
+		<param name="Append" value="true" />
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="fileNamePattern" value="logs/info/%d{yyyy-MM-dd}.log"/>
+		</rollingPolicy>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS} : %p] [%l]--- %m%n" />
+		</layout>
+		<!-- 只输出INFO级别以上的日志 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<!--设定级别为WARN的配置信息-->
+	<appender name="warnLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="encoding" value="utf-8"/>
+		<!-- Append表示如文件已存在，是否把日志追加到文件尾部，可能取值为"true"和"false"（默认） -->
+		<param name="Append" value="true" />
+		<!-- File表示日志文件名 -->
+		<param name="File" value="logs/warn/warn.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS} : %p] [%l]--- %m%n" />
+		</layout>
+		<!-- 只输出WARN级别的日志 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="WARN" />
+		</filter>
+	</appender>
+
+	<!--设定级别为ERROR的配置信息-->
+	<appender name="errorLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="encoding" value="utf-8"/>
+		<!-- Append表示如文件已存在，是否把日志追加到文件尾部，可能取值为"true"和"false"（默认） -->
+		<param name="Append" value="true" />
+		<!-- File表示日志文件名 -->
+		<param name="File" value="logs/error/error.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS} : %p] [%l]--- %m%n" />
+		</layout>
+		<!-- 只输出ERROR级别的日志 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!--配置具体要实现的方式-->
+	<root>
+		<appender-ref ref="consolelog" />
+		<appender-ref ref="debugLog" />
+		<appender-ref ref="infoLog" />
+		<appender-ref ref="warnLog" />
+		<appender-ref ref="errorLog"/>
+	</root>
+	
+</log4j:configuration>

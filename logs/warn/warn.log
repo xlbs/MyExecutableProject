@@ -1,0 +1,45 @@
+[2018-03-01 11:15:21.647 : WARN] [org.hibernate.cfg.SettingsFactory.buildSettings(SettingsFactory.java:117)]--- Could not obtain connection metadata
+java.sql.SQLException: An attempt by a client to checkout a Connection has timed out.
+	at com.mchange.v2.sql.SqlUtils.toSQLException(SqlUtils.java:106)
+	at com.mchange.v2.sql.SqlUtils.toSQLException(SqlUtils.java:65)
+	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool.checkoutPooledConnection(C3P0PooledConnectionPool.java:527)
+	at com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource.getConnection(AbstractPoolBackedDataSource.java:128)
+	at org.hibernate.connection.C3P0ConnectionProvider.getConnection(C3P0ConnectionProvider.java:56)
+	at org.hibernate.cfg.SettingsFactory.buildSettings(SettingsFactory.java:84)
+	at org.hibernate.cfg.Configuration.buildSettings(Configuration.java:2009)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1292)
+	at com.xlbs.queryservice.servicefactory.SessionFactoryManager.startService(SessionFactoryManager.java:68)
+	at com.xlbs.queryservice.service.QueryServiceMain.startService(QueryServiceMain.java:46)
+	at com.xlbs.queryservice.service.QueryServiceMain.main(QueryServiceMain.java:32)
+Caused by: com.mchange.v2.resourcepool.TimeoutException: A client timed out while waiting to acquire a resource from com.mchange.v2.resourcepool.BasicResourcePool@316d173d -- timeout at awaitAvailable()
+	at com.mchange.v2.resourcepool.BasicResourcePool.awaitAvailable(BasicResourcePool.java:1317)
+	at com.mchange.v2.resourcepool.BasicResourcePool.prelimCheckoutResource(BasicResourcePool.java:557)
+	at com.mchange.v2.resourcepool.BasicResourcePool.checkoutResource(BasicResourcePool.java:477)
+	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool.checkoutPooledConnection(C3P0PooledConnectionPool.java:525)
+	... 8 more
+[2018-03-01 11:16:01.396 : WARN] [akka.event.slf4j.Slf4jLogger$$anonfun$receive$1$$anonfun$applyOrElse$2.apply$mcV$sp(Slf4jLogger.scala:71)]--- Association with remote system [akka.tcp://GetuiPushService@127.0.0.1:6300] has failed, address is now gated for [5000] ms. Reason: [Disassociated] 
+[2018-03-01 11:16:03.645 : WARN] [akka.event.slf4j.Slf4jLogger$$anonfun$receive$1$$anonfun$applyOrElse$2.apply$mcV$sp(Slf4jLogger.scala:71)]--- Association with remote system [akka.tcp://QueryService@127.0.0.1:6200] has failed, address is now gated for [5000] ms. Reason: [Disassociated] 
+[2018-03-01 11:19:29.010 : WARN] [akka.event.slf4j.Slf4jLogger$$anonfun$receive$1$$anonfun$applyOrElse$2.apply$mcV$sp(Slf4jLogger.scala:71)]--- Association with remote system [akka.tcp://ServiceOpen@127.0.0.1:6000] has failed, address is now gated for [5000] ms. Reason: [Disassociated] 
+[2018-03-01 11:33:20.096 : WARN] [org.hibernate.cfg.SettingsFactory.buildSettings(SettingsFactory.java:117)]--- Could not obtain connection metadata
+java.sql.SQLException: An attempt by a client to checkout a Connection has timed out.
+	at com.mchange.v2.sql.SqlUtils.toSQLException(SqlUtils.java:106)
+	at com.mchange.v2.sql.SqlUtils.toSQLException(SqlUtils.java:65)
+	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool.checkoutPooledConnection(C3P0PooledConnectionPool.java:527)
+	at com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource.getConnection(AbstractPoolBackedDataSource.java:128)
+	at org.hibernate.connection.C3P0ConnectionProvider.getConnection(C3P0ConnectionProvider.java:56)
+	at org.hibernate.cfg.SettingsFactory.buildSettings(SettingsFactory.java:84)
+	at org.hibernate.cfg.Configuration.buildSettings(Configuration.java:2009)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1292)
+	at com.xlbs.queryservice.servicefactory.SessionFactoryManager.startService(SessionFactoryManager.java:68)
+	at com.xlbs.queryservice.service.QueryServiceMain.startService(QueryServiceMain.java:46)
+	at com.xlbs.queryservice.service.QueryServiceMain.main(QueryServiceMain.java:32)
+Caused by: com.mchange.v2.resourcepool.TimeoutException: A client timed out while waiting to acquire a resource from com.mchange.v2.resourcepool.BasicResourcePool@3a456c56 -- timeout at awaitAvailable()
+	at com.mchange.v2.resourcepool.BasicResourcePool.awaitAvailable(BasicResourcePool.java:1317)
+	at com.mchange.v2.resourcepool.BasicResourcePool.prelimCheckoutResource(BasicResourcePool.java:557)
+	at com.mchange.v2.resourcepool.BasicResourcePool.checkoutResource(BasicResourcePool.java:477)
+	at com.mchange.v2.c3p0.impl.C3P0PooledConnectionPool.checkoutPooledConnection(C3P0PooledConnectionPool.java:525)
+	... 8 more
+[2018-03-01 11:35:31.043 : WARN] [akka.event.slf4j.Slf4jLogger$$anonfun$receive$1$$anonfun$applyOrElse$2.apply$mcV$sp(Slf4jLogger.scala:71)]--- Association with remote system [akka.tcp://ServiceOpen@127.0.0.1:6000] has failed, address is now gated for [5000] ms. Reason: [Disassociated] 
+[2018-03-01 11:35:31.044 : WARN] [akka.event.slf4j.Slf4jLogger$$anonfun$receive$1$$anonfun$applyOrElse$2.apply$mcV$sp(Slf4jLogger.scala:71)]--- Association with remote system [akka.tcp://ServiceOpen@127.0.0.1:6000] has failed, address is now gated for [5000] ms. Reason: [Disassociated] 
+[2018-03-01 11:36:30.281 : WARN] [akka.event.slf4j.Slf4jLogger$$anonfun$receive$1$$anonfun$applyOrElse$2.apply$mcV$sp(Slf4jLogger.scala:71)]--- Association with remote system [akka.tcp://ServiceOpen@127.0.0.1:6000] has failed, address is now gated for [5000] ms. Reason: [Disassociated] 
+[2018-03-01 11:36:30.282 : WARN] [akka.event.slf4j.Slf4jLogger$$anonfun$receive$1$$anonfun$applyOrElse$2.apply$mcV$sp(Slf4jLogger.scala:71)]--- Association with remote system [akka.tcp://ServiceOpen@127.0.0.1:6000] has failed, address is now gated for [5000] ms. Reason: [Disassociated] 

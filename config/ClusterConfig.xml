@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClusterConfig>
+    <ip>127.0.0.1</ip>
+    <port>6000</port>
+    <clusterName>ServiceOpen</clusterName>
+    <clusterNode>akka.tcp://ServiceOpen@127.0.0.1:6000</clusterNode>
+</ClusterConfig>

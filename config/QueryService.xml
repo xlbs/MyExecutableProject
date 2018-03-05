@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QueryService>
+    <ip>127.0.0.1</ip>
+    <port>6200</port>
+    <clusterName>QueryService</clusterName>
+    <clusterNode>akka.tcp://QueryService@127.0.0.1:6200</clusterNode>
+</QueryService>

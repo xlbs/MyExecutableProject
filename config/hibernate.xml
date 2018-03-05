@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<hibernate>
+    <driverClass>com.mysql.jdbc.Driver</driverClass>
+    <connectionUrl>jdbc:mysql://10.13.11.22:3306/clou_cj_yun?characterEncoding=utf8</connectionUrl>
+    <userName>clou_cj_user</userName>
+    <password>clou_cj_user_123</password>
+	<dialect>org.hibernate.dialect.MySQL5Dialect</dialect>
+    <maxFetchDepth>5</maxFetchDepth>
+    <fetchSize>0</fetchSize>
+    <batchSize>25</batchSize>
+    <maxPoolSize>50</maxPoolSize>
+    <minPoolSize>10</minPoolSize>
+    <showSql>true</showSql>
+    <queryTimeout>180</queryTimeout>
+    <maxStatements>50</maxStatements>
+    <acquireIncrement>5</acquireIncrement>
+    <idleTestPeriod>60</idleTestPeriod>
+</hibernate>

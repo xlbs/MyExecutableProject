@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="dependentpag">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Distribution/dependentpag/akka" />
+      <root url="file://$PROJECT_DIR$/Distribution/dependentpag/log" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/Distribution/dependentpag/akka" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/Distribution/dependentpag/log" recursive="false" />
+  </library>
+</component>

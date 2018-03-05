@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact name="QueryService:jar">
+    <output-path>E:/ExecutableProgram/QueryService</output-path>
+    <root id="root">
+      <element id="archive" name="start.jar">
+        <element id="module-output" name="QueryService" />
+        <element id="module-output" name="JedisService" />
+        <element id="module-output" name="ServiceInterface" />
+      </element>
+      <element id="directory" name="libs">
+        <element id="library" level="module" name="hibernate" module-name="QueryService" />
+        <element id="library" level="project" name="dependentpag" />
+        <element id="file-copy" path="$PROJECT_DIR$/JedisService/lib/commons-pool2-2.0.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/JedisService/lib/jedis-2.6.2.jar" />
+      </element>
+    </root>
+  </artifact>
+</component>

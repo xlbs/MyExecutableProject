@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GetuiPushService>
+    <ip>127.0.0.1</ip>
+    <port>6300</port>
+    <clusterName>GetuiPushService</clusterName>
+    <clusterNode>akka.tcp://GetuiPushService@127.0.0.1:6300</clusterNode>
+</GetuiPushService>

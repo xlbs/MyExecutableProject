@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact name="GeTuiService:jar">
+    <output-path>E:/ExecutableProgram/GeTuiService</output-path>
+    <root id="root">
+      <element id="archive" name="start.jar">
+        <element id="module-output" name="GeTuiService" />
+        <element id="module-output" name="JedisService" />
+        <element id="module-output" name="ServiceInterface" />
+      </element>
+      <element id="directory" name="libs">
+        <element id="library" level="project" name="dependentpag" />
+        <element id="library" level="module" name="getui" module-name="GeTuiService" />
+        <element id="file-copy" path="$PROJECT_DIR$/JedisService/lib/commons-pool2-2.0.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/JedisService/lib/jedis-2.6.2.jar" />
+      </element>
+    </root>
+  </artifact>
+</component>
