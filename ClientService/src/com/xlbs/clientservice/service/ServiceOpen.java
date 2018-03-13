@@ -42,7 +42,7 @@ public class ServiceOpen {
 					.withValue("akka.remote.netty.tcp.hostname",ConfigValueFactory.fromAnyRef(cc.getIp()))
 					.withFallback(ConfigFactory.load());//不填则默认读取application.conf配置文件，此时读取client.conf文件
 			
-			this.system = ActorSystem.create("ServiceOpen", config);
+			this.system = ActorSystem.create(ServiceParamter.RPC_ClusterService, config);
 			
 			String clusterNodes = cc.getClusterNode();
 			Cluster.get(this.system).join(AddressFromURIString.parse(clusterNodes));//加入集群，设置为集群主节点
@@ -59,7 +59,7 @@ public class ServiceOpen {
 	 * @throws Exception
 	 */
 	public <T> T getBean(Class<T> clz) throws Exception {
-		Map<String,String> serviceMap = JedisGlobal.JedisUtil_DATA.queryJedisMapAllObj(ServiceParamter.MICRO_SERVICE);
+		Map<String,String> serviceMap = JedisGlobal.JedisUtil_DATA.queryJedisMapAllObj(ServiceParamter.Cluster_Service);
 		return getServiceBean(clz, serviceMap.get(clz.getName()), 30);
 	}
 
