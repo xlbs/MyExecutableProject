@@ -43,7 +43,7 @@ public class GetuiServiceMain {
 				.parseString("akka.remote.netty.tcp.port="+ sc.getPort())
 				.withValue("akka.remote.netty.tcp.hostname",ConfigValueFactory.fromAnyRef(sc.getIp()))
 				.withFallback(ConfigFactory.load());//不填则默认读取application.conf配置文件，此时读取application.conf文件
-		ActorSystem system = ActorSystem.create("GetuiPushService", config);
+		ActorSystem system = ActorSystem.create(ServiceParamter.RPC_ClusterService, config);
 
 		String clusterNodes = sc.getClusterNode();
 		Cluster.get(system).join(AddressFromURIString.parse(clusterNodes));//加入集群，设置为集群主节点
@@ -52,18 +52,18 @@ public class GetuiServiceMain {
 		Map<Class<?>, Object> beans = new HashMap<Class<?>, Object>();
 		beans.put(I_GetuiPushInterface.class, new GetuiPushInterfaceImp());
 
-		ActorRef mainActor = system.actorOf(Props.create(ServerActor.class, beans).withDispatcher("main-dispatcher"), "GTPService");
+		ActorRef mainActor = system.actorOf(Props.create(ServerActor.class, beans).withDispatcher("main-dispatcher"), "GetuiPushService");
 
 		//把服务注册到内存库
 		String serviceIp = "akka.tcp://"+ sc.getClusterName() + "@"+ sc.getIp() + ":"+ sc.getPort();
-		registeService(I_GetuiPushInterface.class.getName(), serviceIp+"/user/GTPService");
+		registeService(I_GetuiPushInterface.class.getName(), serviceIp+"/user/GetuiPushService");
 		log.info("Getui服务已启动");
 
 	}
 
 	public void registeService(String serviceName,String url) {
 		try {
-			JedisGlobal.JedisUtil_DATA.updateJedisObj(ServiceParamter.MICRO_SERVICE,serviceName, url);
+			JedisGlobal.JedisUtil_DATA.updateJedisObj(ServiceParamter.Cluster_Service,serviceName, url);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
