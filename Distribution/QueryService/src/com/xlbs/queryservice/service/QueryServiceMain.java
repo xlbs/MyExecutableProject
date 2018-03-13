@@ -38,8 +38,8 @@ public class QueryServiceMain {
 				.parseString("akka.remote.netty.tcp.port="+ sc.getPort())
 				.withValue("akka.remote.netty.tcp.hostname",ConfigValueFactory.fromAnyRef(sc.getIp()))
 				.withFallback(ConfigFactory.load());//不填则默认读取application.conf配置文件，此时读取application.conf文件
-		ActorSystem system = ActorSystem.create("QueryService", config);
-		
+		ActorSystem system = ActorSystem.create(ServiceParamter.RPC_ClusterService, config);
+
 		String clusterNodes = sc.getClusterNode();
 		Cluster.get(system).join(AddressFromURIString.parse(clusterNodes));//加入集群，设置为集群主节点
 		
@@ -49,18 +49,18 @@ public class QueryServiceMain {
 		Map<Class<?>, Object> beans = new HashMap<Class<?>, Object>();
 		beans.put(I_QueryInterface.class, new QueryInterfaceImp());
 		
-		ActorRef mainActor = system.actorOf(Props.create(ServerActor.class, beans).withDispatcher("other-dispatcher"), "EQService");
+		ActorRef mainActor = system.actorOf(Props.create(ServerActor.class, beans).withDispatcher("other-dispatcher"), "QueryService");
 
 		//把服务注册到内存库
 		String serviceIp = "akka.tcp://"+ sc.getClusterName() + "@"+ sc.getIp() + ":"+ sc.getPort();
-		registeService(I_QueryInterface.class.getName(), serviceIp+"/user/EQService");
+		registeService(I_QueryInterface.class.getName(), serviceIp+"/user/QueryService");
 		log.info("查询服务已启动");
 
 	}
 
 	public void registeService(String serviceName,String url) {
 		try {
-			JedisGlobal.JedisUtil_DATA.updateJedisObj(ServiceParamter.MICRO_SERVICE,serviceName, url);
+			JedisGlobal.JedisUtil_DATA.updateJedisObj(ServiceParamter.Cluster_Service,serviceName, url);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
