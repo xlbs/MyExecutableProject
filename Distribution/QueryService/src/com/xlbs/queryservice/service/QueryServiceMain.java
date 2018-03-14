@@ -26,6 +26,10 @@ public class QueryServiceMain {
 	private final Logger log = Logger.getLogger(QueryServiceMain.class);
 	
 	private static QueryService sc = QueryService.getConfig();
+
+	public static String getNodeIp(){
+		return sc.getClusterNode();
+	}
 	
 	public static void main(String[] args) {
 		QueryServiceMain servicie = new QueryServiceMain();
@@ -41,9 +45,20 @@ public class QueryServiceMain {
 		ActorSystem system = ActorSystem.create(ServiceParamter.RPC_ClusterService, config);
 
 		String clusterNodes = sc.getClusterNode();
-		Cluster.get(system).join(AddressFromURIString.parse(clusterNodes));//加入集群，设置为集群主节点
-		
-		SessionFactoryManager.startService();
+		String leaderNode = null;
+		try {
+			leaderNode = JedisGlobal.JedisUtil_DATA.queryRootKeyValue(ServiceParamter.Cluster_Leader);
+			if (leaderNode != null) {
+				Cluster.get(system).join(AddressFromURIString.parse(leaderNode));//加入集群
+			} else {
+				Cluster.get(system).join(AddressFromURIString.parse(clusterNodes));//加入集群
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		system.actorOf(Props.create(ServiceListener.class), "listener");
+
+//		SessionFactoryManager.startService();
 		
 		// Server 加入发布的服务
 		Map<Class<?>, Object> beans = new HashMap<Class<?>, Object>();
@@ -54,7 +69,7 @@ public class QueryServiceMain {
 		//把服务注册到内存库
 		String serviceIp = "akka.tcp://"+ sc.getClusterName() + "@"+ sc.getIp() + ":"+ sc.getPort();
 		registeService(I_QueryInterface.class.getName(), serviceIp+"/user/QueryService");
-		log.info("查询服务已启动");
+//		log.info("查询服务已启动");
 
 	}
 
@@ -62,7 +77,6 @@ public class QueryServiceMain {
 		try {
 			JedisGlobal.JedisUtil_DATA.updateJedisObj(ServiceParamter.Cluster_Service,serviceName, url);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

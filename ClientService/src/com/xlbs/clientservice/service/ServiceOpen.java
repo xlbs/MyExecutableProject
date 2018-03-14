@@ -1,13 +1,10 @@
 package com.xlbs.clientservice.service;
 
+import akka.actor.*;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigValueFactory;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSelection;
-import akka.actor.ActorSystem;
-import akka.actor.AddressFromURIString;
 import akka.cluster.Cluster;
 import com.xlbs.jedis.utils.JedisGlobal;
 import com.xlbs.serviceinterface.serviceconstant.ServiceParamter;
@@ -22,6 +19,10 @@ public class ServiceOpen {
 	private static ServiceOpen instance = new ServiceOpen();
 	
 	private ClusterConfig cc = ClusterConfig.getConfig();
+
+	public String getNodeIp(){
+		return cc.getClusterNode();
+	}
 	
 	public ActorSystem getSystem() {
 		return system;
@@ -45,7 +46,18 @@ public class ServiceOpen {
 			this.system = ActorSystem.create(ServiceParamter.RPC_ClusterService, config);
 			
 			String clusterNodes = cc.getClusterNode();
-			Cluster.get(this.system).join(AddressFromURIString.parse(clusterNodes));//加入集群，设置为集群主节点
+			String leaderNode = null;
+			try {
+				leaderNode = JedisGlobal.JedisUtil_DATA.queryRootKeyValue(ServiceParamter.Cluster_Leader);
+				if (leaderNode != null) {
+					Cluster.get(this.system).join(AddressFromURIString.parse(leaderNode));//加入集群，设置为集群主节点
+				} else {
+					Cluster.get(this.system).join(AddressFromURIString.parse(clusterNodes));//加入集群，设置为集群主节点
+				}
+				this.system.actorOf(Props.create(ServiceListener.class), "listener");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else{
 			this.system = system;
 		}

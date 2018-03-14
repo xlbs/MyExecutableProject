@@ -28,6 +28,10 @@ public class GetuiServiceMain {
 
 	private static GetuiInfoConfig gtconfig = GetuiInfoConfig.getConfig();
 
+	public static String getNodeIp(){
+		return sc.getClusterNode();
+	}
+
 	public static void main(String[] args) {
 		ConstantParamets.appId = gtconfig.getAppId();
 		ConstantParamets.appKey = gtconfig.getAppKey();
@@ -46,7 +50,18 @@ public class GetuiServiceMain {
 		ActorSystem system = ActorSystem.create(ServiceParamter.RPC_ClusterService, config);
 
 		String clusterNodes = sc.getClusterNode();
-		Cluster.get(system).join(AddressFromURIString.parse(clusterNodes));//加入集群，设置为集群主节点
+		String leaderNode = null;
+		try {
+			leaderNode = JedisGlobal.JedisUtil_DATA.queryRootKeyValue(ServiceParamter.Cluster_Leader);
+			if (leaderNode != null) {
+				Cluster.get(system).join(AddressFromURIString.parse(leaderNode));//加入集群
+			} else {
+				Cluster.get(system).join(AddressFromURIString.parse(clusterNodes));//加入集群
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		system.actorOf(Props.create(ServiceListener.class), "listener");
 
 		// Server 加入发布的服务
 		Map<Class<?>, Object> beans = new HashMap<Class<?>, Object>();
@@ -57,7 +72,7 @@ public class GetuiServiceMain {
 		//把服务注册到内存库
 		String serviceIp = "akka.tcp://"+ sc.getClusterName() + "@"+ sc.getIp() + ":"+ sc.getPort();
 		registeService(I_GetuiPushInterface.class.getName(), serviceIp+"/user/GetuiPushService");
-		log.info("Getui服务已启动");
+//		log.info("Getui服务已启动");
 
 	}
 
