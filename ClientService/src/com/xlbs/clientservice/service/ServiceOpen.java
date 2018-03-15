@@ -50,9 +50,9 @@ public class ServiceOpen {
 			try {
 				leaderNode = JedisGlobal.JedisUtil_DATA.queryRootKeyValue(ServiceParamter.Cluster_Leader);
 				if (leaderNode != null) {
-					Cluster.get(this.system).join(AddressFromURIString.parse(leaderNode));//加入集群，设置为集群主节点
+					Cluster.get(this.system).join(AddressFromURIString.parse(leaderNode));//加入集群
 				} else {
-					Cluster.get(this.system).join(AddressFromURIString.parse(clusterNodes));//加入集群，设置为集群主节点
+					Cluster.get(this.system).join(AddressFromURIString.parse(clusterNodes));//自己建立集群
 				}
 				this.system.actorOf(Props.create(ServiceListener.class), "listener");
 			} catch (Exception e) {
