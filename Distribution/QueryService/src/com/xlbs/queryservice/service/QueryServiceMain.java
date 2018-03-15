@@ -51,7 +51,7 @@ public class QueryServiceMain {
 			if (leaderNode != null) {
 				Cluster.get(system).join(AddressFromURIString.parse(leaderNode));//加入集群
 			} else {
-				Cluster.get(system).join(AddressFromURIString.parse(clusterNodes));//自己创建集群
+				Cluster.get(system).join(AddressFromURIString.parse(clusterNodes));//自己建立新集群
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
