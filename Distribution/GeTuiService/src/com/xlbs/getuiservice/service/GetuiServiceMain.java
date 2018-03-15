@@ -72,7 +72,7 @@ public class GetuiServiceMain {
 		//把服务注册到内存库
 		String serviceIp = "akka.tcp://"+ sc.getClusterName() + "@"+ sc.getIp() + ":"+ sc.getPort();
 		registeService(I_GetuiPushInterface.class.getName(), serviceIp+"/user/GetuiPushService");
-//		log.info("Getui服务已启动");
+		log.info("Getui服务已启动");
 
 	}
 
