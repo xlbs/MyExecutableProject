@@ -58,7 +58,7 @@ public class QueryServiceMain {
 		}
 		system.actorOf(Props.create(ServiceListener.class), "listener");
 
-//		SessionFactoryManager.startService();
+		SessionFactoryManager.startService();
 		
 		// Server 加入发布的服务
 		Map<Class<?>, Object> beans = new HashMap<Class<?>, Object>();
@@ -69,7 +69,7 @@ public class QueryServiceMain {
 		//把服务注册到内存库
 		String serviceIp = "akka.tcp://"+ sc.getClusterName() + "@"+ sc.getIp() + ":"+ sc.getPort();
 		registeService(I_QueryInterface.class.getName(), serviceIp+"/user/QueryService");
-//		log.info("查询服务已启动");
+		log.info("查询服务已启动");
 
 	}
 
