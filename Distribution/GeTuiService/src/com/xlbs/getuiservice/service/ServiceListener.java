@@ -30,14 +30,14 @@ public class ServiceListener extends UntypedActor {
     public void onReceive(Object message) throws Exception {
         if (message instanceof MemberUp) {
             MemberUp mUp = (MemberUp) message;
-            log.info("############### Member is Up: {}", mUp.member());
+            log.info("Member is Up: {}", mUp.member());
         } else if (message instanceof UnreachableMember) {
             UnreachableMember mUnreachable = (UnreachableMember) message;
-            log.info("############### Member detected as unreachable: {}",mUnreachable.member());
+            log.info("Member detected as unreachable: {}",mUnreachable.member());
             cluster.down(mUnreachable.member().address());
         } else if (message instanceof LeaderChanged) {
             LeaderChanged lChanged = (LeaderChanged) message;
-            log.info("############### Member is LeaderChanged: {}", lChanged.leader());
+            log.info("Member is LeaderChanged: {}", lChanged.leader());
             String serviceAddr = lChanged.getLeader().protocol() + "://"+lChanged.getLeader().hostPort();
             if(serviceAddr.equals(GetuiServiceMain.getNodeIp())){//只有是本机ip变为主节点才修改内存库
                 JedisGlobal.JedisUtil_DATA.setRootKeyValue(ServiceParamter.Cluster_Leader, serviceAddr);
@@ -45,7 +45,7 @@ public class ServiceListener extends UntypedActor {
         }else if (message instanceof MemberRemoved) {
             MemberRemoved mRemoved = (MemberRemoved) message;
             cluster.join(mRemoved.member().address());
-            log.info("############### Member is Removed: {}", mRemoved.member());
+            log.info("Member is Removed: {}", mRemoved.member());
         } else if (message instanceof MemberEvent) {
             // ignore
         } else {
