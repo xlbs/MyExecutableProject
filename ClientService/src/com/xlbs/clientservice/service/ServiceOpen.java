@@ -52,7 +52,7 @@ public class ServiceOpen {
 				if (leaderNode != null) {
 					Cluster.get(this.system).join(AddressFromURIString.parse(leaderNode));//加入集群
 				} else {
-					Cluster.get(this.system).join(AddressFromURIString.parse(clusterNodes));//自己建立集群
+					Cluster.get(this.system).join(AddressFromURIString.parse(clusterNodes));//自己建立新集群
 				}
 				this.system.actorOf(Props.create(ServiceListener.class), "listener");
 			} catch (Exception e) {
