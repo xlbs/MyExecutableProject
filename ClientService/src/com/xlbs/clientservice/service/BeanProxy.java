@@ -52,7 +52,7 @@ public class BeanProxy implements InvocationHandler {
 			Object o = Await.result(future,Duration.create(timeOutSeconds, TimeUnit.SECONDS));
 			result = o;
 		}catch(Exception e){
-			throw  new RuntimeException("查询超时");
+			throw  new RuntimeException("服务请求超时");
 		}finally{
 			ServiceOpen.getInstance().stopActor(clientActor);
 		}

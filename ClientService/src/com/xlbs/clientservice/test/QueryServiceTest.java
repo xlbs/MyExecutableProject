@@ -11,7 +11,7 @@ public class QueryServiceTest {
         String result = null;
         try {
             StringBuffer sb = new StringBuffer();
-            sb.append("SELECT * FROM `u_unit`");
+            sb.append("SELECT * FROM `bs_user`");
             List<Map> list = DAOFactory.getInstance().getQueryInterface().querySqlReturnListMap(sb.toString());
             result = "测试成功："+list.toString();
         } catch (RuntimeException e) {
